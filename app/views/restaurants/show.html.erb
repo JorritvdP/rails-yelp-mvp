@@ -1,0 +1,20 @@
+<h1 class="p-3 mb-2 w-50 m-auto text-center bg-primary text-white"><%= @restaurant.name  %></h1>
+
+<div class="p-3 mb-2 w-50 m-auto border-bottom border-dark border-3">
+  <h3 class="p-2 ms-2 mb-1"><%= @restaurant.address %></h3>
+  <h3 class="p-2 ms-2 mb-1"><%= @restaurant.phone_number %></h3>
+  <h3 class="p-2 ms-2 mb-1"><%= @restaurant.category %></h3>
+</div>
+
+<div class="w-50 m-auto mb-2 text-center">
+  <%= link_to '<i class="fa-solid fa-square-plus fa-xl link-unstyled"></i> Add Review'.html_safe, new_restaurant_review_path(@restaurant), style: 'text-decoration-none' %>
+</div>
+
+<div class="w-50 m-auto text-center border border-dark p-3 mb-2">
+  <% @restaurant.reviews.each do |review| %>
+    <div class="mb-2" ><% (review.rating).to_i.times { %> <%= '⭐' %> <% } %>  </div>
+    <div class="p-2 mb-2"><%= review.content %></div>
+  <% end %>
+</div>
+
+<div class="w-50 m-auto text-center"><%= link_to 'Go back', { controller: 'restaurants', action: 'index'}, class: 'btn btn-primary ms-2' %></div>
